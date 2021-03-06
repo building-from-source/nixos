@@ -3,7 +3,13 @@
 # and in the NixOS manual (accessible by running ‘nixos-help’).
 { config, pkgs, ... }:
 
-{
+let
+  mayniklas = builtins.fetchGit {
+    # Updated 2020-03-06
+    url = "https://github.com/mayniklas/nixos";
+    rev = "dbba84cbb498312d41f842c956e18ad17b409a0d";
+  };
+in {
   imports = [
     # Include the results of the hardware scan.
     ./hardware-configuration.nix
@@ -14,15 +20,15 @@
     ../../users/julian.nix
 
     # Modules
-    ../../modules/grub.nix
-    ../../modules/bluetooth.nix
-    ../../modules/locale.nix
-    ../../modules/networking.nix
-    ../../modules/openssh.nix
-    ../../modules/options.nix
-    ../../modules/sound.nix
+    "${mayniklas}/modules/hosts.nix/modules/bluetooth.nix"
+    "${mayniklas}/modules/hosts.nix/modules/grub.nix"
+    "${mayniklas}/modules/locale.nix"
+    "${mayniklas}/modules/networking.nix"
+    "${mayniklas}/modules/openssh.nix"
+    "${mayniklas}/modules/options.nix"
+    "${mayniklas}/modules/sound.nix"
+    "${mayniklas}/modules/yubikey.nix"
     ../../modules/xserver.nix
-    ../../modules/yubikey.nix
   ];
 
   mainUser = "julian";
