@@ -20,8 +20,8 @@ in {
     ../../users/julian.nix
 
     # Modules
-    "${mayniklas}/modules/hosts.nix"/modules/bluetooth.nix"
-    "${mayniklas}/modules/hosts.nix"/modules/grub.nix"
+    "${mayniklas}/modules/hosts.nix/modules/bluetooth.nix"
+    "${mayniklas}/modules/hosts.nix/modules/grub.nix"
     "${mayniklas}/modules/locale.nix"
     "${mayniklas}/modules/networking.nix"
     "${mayniklas}/modules/openssh.nix"
