@@ -7,7 +7,7 @@ let
   mayniklas = builtins.fetchGit {
     # Updated 2020-03-06
     url = "https://github.com/mayniklas/nixos";
-    rev = "dbba84cbb498312d41f842c956e18ad17b409a0d";
+    rev = "f2c2b2b8481bffa2f0d083fef9d827f4f717f27c";
   };
 in {
   imports = [
@@ -19,16 +19,20 @@ in {
     ../../users/root.nix
     ../../users/julian.nix
 
-    # Modules
-    "${mayniklas}/modules/hosts.nix/modules/bluetooth.nix"
-    "${mayniklas}/modules/hosts.nix/modules/grub.nix"
+    # Modules imported from MayNiklas
+    "${mayniklas}/modules/bluetooth.nix"
+    "${mayniklas}/modules/grub.nix"
     "${mayniklas}/modules/locale.nix"
     "${mayniklas}/modules/networking.nix"
+    "${mayniklas}/modules/nix-common.nix"
     "${mayniklas}/modules/openssh.nix"
     "${mayniklas}/modules/options.nix"
     "${mayniklas}/modules/sound.nix"
     "${mayniklas}/modules/yubikey.nix"
-    ../../modules/xserver.nix
+    "${mayniklas}/modules/kde.nix"
+
+    # Modules
+    # "${mayniklas}/modules/xserver.nix"
   ];
 
   mainUser = "julian";
