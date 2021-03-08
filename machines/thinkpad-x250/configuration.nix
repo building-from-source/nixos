@@ -5,9 +5,9 @@
 
 let
   mayniklas = builtins.fetchGit {
-    # Updated 2020-03-07
+    # Updated 2020-03-08
     url = "https://github.com/mayniklas/nixos";
-    rev = "8a44df21d8cfc166fc522bbc8fd433a1b729eceb";
+    rev = "b41eb613ac628302e09ef8e04882fc0175472b57";
   };
 in {
   imports = [
@@ -22,6 +22,7 @@ in {
     # Modules imported from MayNiklas
     "${mayniklas}/modules/bluetooth.nix"
     "${mayniklas}/modules/grub.nix"
+    "${mayniklas}/modules/grub-luks.nix"
     "${mayniklas}/modules/locale.nix"
     "${mayniklas}/modules/networking.nix"
     "${mayniklas}/modules/nix-common.nix"
@@ -37,6 +38,12 @@ in {
 
   mainUser = "julian";
   mainUserHome = "${config.users.extraUsers.${config.mainUser}.home}";
+
+  mayniklas = {
+    grub-luks = {
+      enable = false;
+    };
+  };
 
   networking = { hostName = "thinkpad-x250"; };
 
