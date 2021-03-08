@@ -15,13 +15,11 @@ in {
     ./hardware-configuration.nix
 
     # Users
-    ../../users/nik.nix
     ../../users/root.nix
     ../../users/julian.nix
 
     # Modules imported from MayNiklas
     "${mayniklas}/modules/bluetooth.nix"
-    "${mayniklas}/modules/grub.nix"
     "${mayniklas}/modules/grub-luks.nix"
     "${mayniklas}/modules/locale.nix"
     "${mayniklas}/modules/networking.nix"
@@ -41,7 +39,8 @@ in {
 
   mayniklas = {
     grub-luks = {
-      enable = false;
+      enable = true;
+      uuid = "2fcb1d42-da4a-472f-b13c-8ef727389806";
     };
   };
 
