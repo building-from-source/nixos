@@ -1,0 +1,21 @@
+kind: pipeline
+type: exec
+name: Build all Hosts
+
+platform:
+  os: linux
+  arch: amd64
+
+steps:
+- name: Build thinkpad-x250
+  environment:
+    NIX_PATH: nixpkgs=channel:nixos-unstable
+  commands:
+  - nix-shell -p '(nixos{}).nixos-rebuild' --run "nixos-rebuild build -I nixos-config=./machines/thinkpad-x250/configuration.nix"
+
+trigger:
+  branch:
+  - main
+  event:
+  - push
+  - cron
