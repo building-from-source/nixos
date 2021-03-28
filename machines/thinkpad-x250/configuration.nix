@@ -23,7 +23,6 @@ in {
     "${mayniklas}/modules/grub-luks.nix"
     "${mayniklas}/modules/locale.nix"
     "${mayniklas}/modules/networking.nix"
-    "${mayniklas}/modules/nix-common.nix"
     "${mayniklas}/modules/openssh.nix"
     "${mayniklas}/modules/options.nix"
     "${mayniklas}/modules/sound.nix"
@@ -31,7 +30,8 @@ in {
     "${mayniklas}/modules/kde.nix"
 
     # Modules
-    # "${mayniklas}/modules/xserver.nix"
+    ../../modules/nix-common.nix
+
   ];
 
   mainUser = "julian";
