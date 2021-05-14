@@ -31,6 +31,7 @@ in {
 
     # Modules
     ../../modules/nix-common.nix
+    ../../modules/zsh.nix
 
   ];
 

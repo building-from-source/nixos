@@ -4,6 +4,7 @@
     isNormalUser = true;
     home = "/home/julian";
     extraGroups = [ "wheel" ]; # Enable ‘sudo’ for the user.
+    shell = pkgs.zsh;
     openssh.authorizedKeys.keyFiles =
       [ (builtins.fetchurl { url = "https://github.com/building-from-source.keys"; }) ];
   };
