@@ -1,15 +1,9 @@
 # Edit this configuration file to define what should be installed on
 # your system.  Help is available in the configuration.nix(5) man page
 # and in the NixOS manual (accessible by running ‘nixos-help’).
-{ config, pkgs, ... }:
+{ self, ... }:
 
-let
-  mayniklas = builtins.fetchGit {
-    # Updated 2020-05-14
-    url = "https://github.com/mayniklas/nixos";
-    rev = "d9600cce022f6c91506f0d5e965437482ea16ddb";
-  };
-in {
+{
   imports = [
     # Include the results of the hardware scan.
     ./hardware-configuration.nix
@@ -17,21 +11,6 @@ in {
     # Users
     ../../users/root.nix
     ../../users/julian.nix
-
-    # Modules imported from MayNiklas
-    "${mayniklas}/modules/bluetooth"
-    "${mayniklas}/modules/grub-luks"
-    "${mayniklas}/modules/locale"
-    "${mayniklas}/modules/networking"
-    "${mayniklas}/modules/openssh"
-    "${mayniklas}/modules/options"
-    "${mayniklas}/modules/sound"
-    "${mayniklas}/modules/kde"
-    "${mayniklas}/modules/yubikey"
-    "${mayniklas}/modules/zsh"
-
-    # Modules
-    ../../modules/nix-common.nix
 
   ];
 
@@ -45,6 +24,7 @@ in {
     kde.enable = true;
     locale.enable = true;
     networking.enable = true;
+    nix-common.enable = true;
     openssh.enable = true;
     sound.enable = true;
     yubikey.enable = true;
@@ -56,7 +36,15 @@ in {
 
   # List packages installed in system profile. To search, run:
   # $ nix search wget
-  environment.systemPackages = with pkgs; [ bash-completion git nixfmt wget ];
+  environment.systemPackages =
+    with self.inputs.nixpkgs.legacyPackages.x86_64-linux; [
+      bash-completion
+      git
+      nixfmt
+      wget
+    ];
+
+  home-manager.users.julian = { imports = [ ../../home-manager/home.nix ]; };
 
   # This value determines the NixOS release from which the default
   # settings for stateful data, like file locations and database versions
