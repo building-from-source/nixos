@@ -17,6 +17,7 @@ in {
     ./modules/devolopment.nix
     ./modules/chromium.nix
     ./modules/firefox.nix
+    ./modules/zsh.nix
   ];
 
   home.packages = with pkgs; [
