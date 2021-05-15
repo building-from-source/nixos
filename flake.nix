@@ -23,20 +23,8 @@
           modules = [
             # Add home-manager option to all configs
             ({ ... }: {
-              imports = [
-                mayniklas.nixosModules.bluetooth
-                mayniklas.nixosModules.grub-luks
-                mayniklas.nixosModules.kde
-                mayniklas.nixosModules.locale
-                mayniklas.nixosModules.networking
-                mayniklas.nixosModules.nix-common
-                mayniklas.nixosModules.openssh
-                mayniklas.nixosModules.options
-                mayniklas.nixosModules.sound
-                mayniklas.nixosModules.yubikey
-                mayniklas.nixosModules.zsh
-                {
-                  # Set the $NIX_PATH entry for nixpkgs. This is necessary in
+              imports = builtins.attrValues mayniklas.nixosModules ++ [
+                { # Set the $NIX_PATH entry for nixpkgs. This is necessary in
                   # this setup with flakes, otherwise commands like `nix-shell
                   # -p pkgs.htop` will keep using an old version of nixpkgs.
                   # With this entry in $NIX_PATH it is possible (and
