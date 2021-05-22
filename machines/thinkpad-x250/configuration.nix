@@ -17,6 +17,7 @@
   mayniklas = {
     var.mainUser = "julian";
     bluetooth.enable = true;
+    docker.enable = true;
     grub-luks = {
       enable = true;
       uuid = "2fcb1d42-da4a-472f-b13c-8ef727389806";
