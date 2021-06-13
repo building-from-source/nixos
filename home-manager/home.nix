@@ -25,6 +25,7 @@ in {
     anki-bin
     ark
     atom
+    calibre
     discord
     gradle
     gparted
