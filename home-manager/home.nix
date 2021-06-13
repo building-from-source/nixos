@@ -27,6 +27,7 @@ in {
     atom
     discord
     gradle
+    gparted
     htop
     intel-gpu-tools
     mpv
