@@ -31,6 +31,7 @@ in {
     gparted
     htop
     intel-gpu-tools
+    mcomix3
     mpv
     okular
     qolibri
