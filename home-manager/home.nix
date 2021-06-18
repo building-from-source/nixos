@@ -27,6 +27,7 @@ in {
     atom
     calibre
     discord
+    filebot
     gradle
     gparted
     htop
