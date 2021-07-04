@@ -44,6 +44,6 @@ in rec {
   thinkpad-x250 = createHost "thinkpad-x250" "root@thinkpad-x250";
 
   # Groups
-  all = pkgs.writeScript "deploy-all"
-    (lib.concatStringsSep "\n" [ thinkpad-x250 ]);
+  all =
+    pkgs.writeScript "deploy-all" (lib.concatStringsSep "\n" [ thinkpad-x250 ]);
 }
