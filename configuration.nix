@@ -1,1 +1,0 @@
-machines/thinkpad-x250/configuration.nix
