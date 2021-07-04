@@ -140,7 +140,7 @@ steps:
   commands:
   - nix-shell -p nixfmt --command "nixfmt *.nix"
   - nix-shell -p nixfmt --command "nixfmt home-manager/*.nix"
-  - nix-shell -p nixfmt --command "nixfmt home-manager/*/*.nix"
+  - nix-shell -p nixfmt --command "nixfmt home-manager/modules/*.nix"
   - nix-shell -p nixfmt --command "nixfmt machines/*/*.nix"
   - nix-shell -p nixfmt --command "nixfmt users/*.nix"
   environment:
