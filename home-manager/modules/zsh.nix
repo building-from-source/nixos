@@ -46,10 +46,12 @@
 
   programs.htop = {
     enable = true;
-    treeView = true;
-    showCpuFrequency = true;
-    showCpuUsage = true;
-    showProgramPath = false;
+    settings = {
+      show_cpu_frequency = true;
+      show_cpu_usage = true;
+      show_program_path = true;
+      tree_view = false;
+    };
   };
 
   programs.jq.enable = true;
