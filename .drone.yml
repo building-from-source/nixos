@@ -48,6 +48,11 @@ clone:
 
 steps:
 
+- name: create result-old files
+  commands:
+  - nix build -v '.#nixosConfigurations.thinkpad-x250.config.system.build.toplevel' --option binary-caches "https://cache.nixos.org"
+  - mv result thinkpad-x250-old
+
 - name: flake update
   commands:
   - nix --experimental-features "nix-command flakes" flake update --inputs-from nixpkgs
@@ -69,6 +74,11 @@ steps:
 - name: Build thinkpad-x250
   commands:
   - nix build -v '.#nixosConfigurations.thinkpad-x250.config.system.build.toplevel'
+  - mv result thinkpad-x250-new
+  
+- name: Print report
+  commands:
+  - echo "thinkpad-x250:" && nix store diff-closures $(readlink -f thinkpad-x250-old) $(readlink -f thinkpad-x250-new)
 
 trigger:
   branch:
