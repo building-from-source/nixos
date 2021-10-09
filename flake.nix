@@ -32,6 +32,7 @@
                   # and root e.g. `nix-channel --remove nixos`. `nix-channel
                   # --list` should be empty for all users afterwards
                   nix.nixPath = [ "nixpkgs=${nixpkgs}" ];
+                  nixpkgs.overlays = [ self.overlay ];
                 }
                 baseCfg
                 home-manager.nixosModules.home-manager
@@ -49,6 +50,9 @@
         };
 
     in {
+
+      # Expose overlay to flake outputs, to allow using it from other flakes.
+      overlay = final: prev: (import ./overlays) final prev;
 
       # Each subdirectory in ./machins is a host. Add them all to
       # nixosConfiguratons. Host configurations need a file called

@@ -46,7 +46,12 @@
       wget
     ];
 
-  home-manager.users.julian = { imports = [ ../../home-manager/home.nix ]; };
+  home-manager.users.julian = {
+    imports = [
+      ../../home-manager/home.nix
+      { nixpkgs.overlays = [ self.overlay ]; }
+    ];
+  };
 
   # This value determines the NixOS release from which the default
   # settings for stateful data, like file locations and database versions
