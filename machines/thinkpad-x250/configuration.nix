@@ -50,7 +50,7 @@
   home-manager.users.julian = {
     imports = [
       ../../home-manager/home.nix
-      { nixpkgs.overlays = [ self.overlay ]; }
+      { nixpkgs.overlays = [ self.overlay self.overlay-unstable ]; }
     ];
   };
 

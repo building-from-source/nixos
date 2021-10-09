@@ -1,8 +1,9 @@
-{
+ {
   description = "A very basic flake";
 
   inputs = {
     nixpkgs.url = "github:nixos/nixpkgs/nixos-21.05";
+    nixpkgs-unstable.url = "github:nixos/nixpkgs/nixos-unstable";
 
     home-manager.url = "github:nix-community/home-manager/release-21.05";
     home-manager.inputs.nixpkgs.follows = "nixpkgs";
@@ -32,7 +33,7 @@
                   # and root e.g. `nix-channel --remove nixos`. `nix-channel
                   # --list` should be empty for all users afterwards
                   nix.nixPath = [ "nixpkgs=${nixpkgs}" ];
-                  nixpkgs.overlays = [ self.overlay ];
+                  nixpkgs.overlays = [ self.overlay self.overlay-unstable ];
                 }
                 baseCfg
                 home-manager.nixosModules.home-manager
@@ -53,6 +54,13 @@
 
       # Expose overlay to flake outputs, to allow using it from other flakes.
       overlay = final: prev: (import ./overlays) final prev;
+
+      overlay-unstable = final: prev: {
+        unstable = import nixpkgs-unstable {
+          system = "x86_64-linux";
+          config.allowUnfree = true;
+        };
+      };
 
       # Each subdirectory in ./machins is a host. Add them all to
       # nixosConfiguratons. Host configurations need a file called
