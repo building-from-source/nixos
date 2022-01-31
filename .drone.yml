@@ -29,6 +29,7 @@ steps:
 trigger:
   branch:
   - main
+  - update-flake
   event:
   - push
   - pull_request
@@ -84,9 +85,7 @@ trigger:
   branch:
   - main
   event:
-  - push
   - pull_request
-  - cron
 
 ---
 kind: pipeline
@@ -97,11 +96,9 @@ steps:
 - name: Update flake.lock
   image: nixpkgs/nix-flakes
   commands:
-  - nix flake update --inputs-from nixpkgs
+  - nix flake update
   - nix flake show
   - nix flake metadata
-  - nix flake check
-  - nix flake check --show-trace
   environment:
     NIX_PATH: nixpkgs=channel:nixos-unstable
 
