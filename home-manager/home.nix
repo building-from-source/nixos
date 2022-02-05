@@ -32,6 +32,7 @@ in {
     gparted
     htop
     intel-gpu-tools
+    libreoffice
     mcomix3
     mpv
     okular

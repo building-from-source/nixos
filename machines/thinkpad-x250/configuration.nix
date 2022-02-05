@@ -24,7 +24,7 @@
       enable = true;
       uuid = "2fcb1d42-da4a-472f-b13c-8ef727389806";
     };
-    kde.enable = true;
+    gnome.enable = true;
     locale.enable = true;
     networking.enable = true;
     nix-common.enable = true;
