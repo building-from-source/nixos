@@ -20,11 +20,12 @@ steps:
 - name: run flake checks
   commands:
   - nix --experimental-features "nix-command flakes" flake check --show-trace
+{{#hosts}}
 
 ---
 kind: pipeline
 type: exec
-name: build thinkpad-x250
+name: build {{name}}
 
 platform:
   os: linux
@@ -35,15 +36,15 @@ clone:
 
 steps:
 
-- name: build thinkpad-x250
+- name: build {{name}}
   commands:
-  - nix build -v '.#nixosConfigurations.thinkpad-x250.config.system.build.toplevel'
+  - nix build -v '.#nixosConfigurations.{{name}}.config.system.build.toplevel'
 
 - name: show closure size
   commands:
   - nix path-info --closure-size -h $(readlink -f result)
 
-- name: upload thinkpad-x250 to binary cache via s3
+- name: upload {{name}} to binary cache via s3
   commands:
   - nix copy --to 's3://example-nix-cache?scheme=https&region=eu-central-1&endpoint=s3.lounge.rocks' $(nix-store -qR result/) -L
   environment:
@@ -60,3 +61,4 @@ trigger:
   - cron
   - push
   - pull_request
+{{/hosts}}
