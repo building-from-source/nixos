@@ -24,7 +24,7 @@ steps:
 ---
 kind: pipeline
 type: exec
-name: build thinkpad-x250
+name: build amd64 hosts
 
 platform:
   os: linux
@@ -39,10 +39,12 @@ steps:
   commands:
   - nix build -v '.#nixosConfigurations.thinkpad-x250.config.system.build.toplevel'
 
-- name: show closure size
+- name: build thinkpad-x250 for upload
+  commands:
+  - nix build -v '.#nixosConfigurations.thinkpad-x250.config.system.build.toplevel'
+- name: show closure size thinkpad-x250
   commands:
   - nix path-info --closure-size -h $(readlink -f result)
-
 - name: upload thinkpad-x250 to binary cache via s3
   commands:
   - nix copy --to 's3://nix-cache?scheme=https&region=eu-central-1&endpoint=s3.lounge.rocks' $(nix-store -qR result/) -L
