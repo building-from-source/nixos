@@ -1,7 +1,13 @@
 {
     "hosts": [
         {
-            "name": "thinkpad-x250"
+            "arch": "amd64",
+            "machines": [
+                {
+                    "name": "thinkpad-x250"
+                }
+            ]
         }
-    ]
+    ],
+    "packages": []
 }
